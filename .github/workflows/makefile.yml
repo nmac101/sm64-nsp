@@ -18,4 +18,4 @@ jobs:
       run: cd "Ndless/ndless-sdk/toolchain" && ./build_toolchain.sh
 
     - name: Run makefile
-      run: cd "../.." && PATH=$PATH:$(pwd)/ndless-sdk/toolchain/install/bin:$(pwd)/ndless && make
+      run: cd "../.." && PATH=$PATH:$(pwd)/ndless-sdk/toolchain/install/bin:$(pwd)/ndless && make -j$(nproc)
