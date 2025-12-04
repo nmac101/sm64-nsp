@@ -13,9 +13,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    
+    - name: clone the ndless repo for the sdk
+      run: git clone https://github.com/ndless-nspire/Ndless
 
-    - name: Build toolchain
+    - name: build ndless toolchain
       run: cd "Ndless/ndless-sdk/toolchain" && ./build_toolchain.sh
 
-    - name: Run makefile
+    - name: make ndless toolchain
       run: cd "../.." && PATH=$PATH:$(pwd)/ndless-sdk/toolchain/install/bin:$(pwd)/ndless && make -j$(nproc)
+
+    - name: finally make the goddamn thing
+      run: cd .. && make -j$(nproc)
